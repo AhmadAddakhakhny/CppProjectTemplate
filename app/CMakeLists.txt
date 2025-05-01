@@ -6,3 +6,4 @@ target_link_libraries(app.exe PUBLIC LIB)
 # Target include files paths shall be passed to this function
 target_include_directories(app.exe PRIVATE "${CMAKE_BINARY_DIR}/configured_files/include")
 target_compile_definitions(app.exe PRIVATE DEBUG_LOG=$<BOOL:${DEBUG_LOG}>)
+target_link_libraries(app.exe  PRIVATE nlohmann_json)
