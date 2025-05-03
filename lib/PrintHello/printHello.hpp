@@ -5,6 +5,10 @@
 class print{
   public:
     print() = default;
+    /**
+     * @brief Prints out hello world
+     * 
+     */
     void printHelloWorld();
 };
 

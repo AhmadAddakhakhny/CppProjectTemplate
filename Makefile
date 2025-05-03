@@ -13,6 +13,11 @@ run_d:
 	@echo "################## Application Running with DEBUG LOGS"
 	cd build/out/app && ./app.exe
 
+docs: all
+	@echo "################## Generating HTML files"
+	cd build/out && make docs
+
 clean:
 	rm -rf build/out
 	cd build && mkdir out
+	cd docs && rm -rf html

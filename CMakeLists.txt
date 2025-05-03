@@ -13,6 +13,7 @@ option(CPM_ENABLED "Enable CPM to fetch GitHub Repos" OFF)
 set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake/")
 include(execBashCommand)
 include(CPM)    # Add third party CMake projects/submodules to the current prject
+include(docs)
 
 # Invoke User defined CMake Functions
 set(GIT_COMMIT_SHA "")
@@ -29,7 +30,6 @@ CPMAddPackage(
 )
 
 file(COPY ${nlohmann_json_SOURCE_DIR} DESTINATION ${CMAKE_SOURCE_DIR}/external/json)
-message(STATUS "################## Path to json: ${nlohmann_json_SOURCE_DIR}")
 endif()
 
 add_subdirectory(configured)
