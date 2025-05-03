@@ -4,6 +4,8 @@ project(CppProjectTemplate VERSION 1.0.0 LANGUAGES C CXX)
 set(CMAKE_CXX_STANDARD          17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS        OFF)
+set(CMAKE_CXX_FLAGS_RELEASE   "-O3")
+set(CMAKE_C_FLAGS_RELEASE     "-O3")
 
 # Build config options
 option(DEBUG_LOG "Enable debug logging" OFF)
@@ -11,19 +13,27 @@ option(CPM_ENABLED "Enable CPM to fetch GitHub Repos" OFF)
 option(WARNINGS_ENABLED "Enable compiler warning flags" ON)
 option(WARNINGS_ENABLED_AS_ERR "Enable compiler warnings as error" ON)
 option(SANITIZER_ENABLED "Enable Address Sanitizer" OFF)
+option(LTO_ENABLED "Enable Link Time Optimization" ON)
 
-# CMake Includes
+# CMake Includes -----------------------------------------------------------------#
 set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake/")
 include(execBashCommand)
 include(CPM)    # Add third party CMake projects/submodules to the current prject
 include(docs)
+
 if(WARNINGS_ENABLED)
   include(warnings)
 endif()
+
 if(SANITIZER_ENABLED)
   include(sanitizer)
   add_sanitizer_flags()
 endif()
+
+if(LTO_ENABLED)
+  include(LTO)
+endif()
+#---------------------------------------------------------------------------------#
 
 # Invoke User defined CMake Functions
 set(GIT_COMMIT_SHA "")
