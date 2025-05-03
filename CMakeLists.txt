@@ -10,6 +10,7 @@ option(DEBUG_LOG "Enable debug logging" OFF)
 option(CPM_ENABLED "Enable CPM to fetch GitHub Repos" OFF)
 option(WARNINGS_ENABLED "Enable compiler warning flags" ON)
 option(WARNINGS_ENABLED_AS_ERR "Enable compiler warnings as error" ON)
+option(SANITIZER_ENABLED "Enable Address Sanitizer" OFF)
 
 # CMake Includes
 set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake/")
@@ -18,6 +19,10 @@ include(CPM)    # Add third party CMake projects/submodules to the current prjec
 include(docs)
 if(WARNINGS_ENABLED)
   include(warnings)
+endif()
+if(SANITIZER_ENABLED)
+  include(sanitizer)
+  add_sanitizer_flags()
 endif()
 
 # Invoke User defined CMake Functions
