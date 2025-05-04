@@ -14,6 +14,7 @@ option(WARNINGS_ENABLED "Enable compiler warning flags" ON)
 option(WARNINGS_ENABLED_AS_ERR "Enable compiler warnings as error" ON)
 option(SANITIZER_ENABLED "Enable Address Sanitizer" OFF)
 option(LTO_ENABLED "Enable Link Time Optimization" ON)
+option(TEST_ENABLED "Enable build for Unit test" OFF)
 
 # CMake Includes -----------------------------------------------------------------#
 set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake/")
@@ -33,6 +34,10 @@ endif()
 if(LTO_ENABLED)
   include(LTO)
 endif()
+
+if(TEST_ENABLED)
+  include(gtest)
+endif()
 #---------------------------------------------------------------------------------#
 
 # Invoke User defined CMake Functions
@@ -48,11 +53,22 @@ CPMAddPackage(
   VERSION 3.12.0
   DOWNLOAD_ONLY TRUE
 )
-
 file(COPY ${nlohmann_json_SOURCE_DIR} DESTINATION ${CMAKE_SOURCE_DIR}/external/json)
+
+CPMAddPackage(
+  NAME googletest
+  GITHUB_REPOSITORY google/googletest
+  VERSION 1.14.0
+  DOWNLOAD_ONLY TRUE
+)
+file(COPY ${googletest_SOURCE_DIR} DESTINATION ${CMAKE_SOURCE_DIR}/external/googletest)
 endif()
 
+if(NOT TEST_ENABLED)
 add_subdirectory(configured)
 add_subdirectory(external)
-add_subdirectory(app)
-add_subdirectory(lib)
+  add_subdirectory(app)
+  add_subdirectory(lib)
+else()
+  add_subdirectory(tests)
+endif()
