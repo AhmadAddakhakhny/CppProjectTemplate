@@ -8,3 +8,6 @@ target_link_libraries(LIB PUBLIC
   
 target_set_warnings(LIB ${WARNINGS_ENABLED} ${WARNINGS_ENABLED_AS_ERR})
 target_enable_lto(LIB ${LTO_ENABLED})
+if(${CLANG-TIDY_ENABLED})
+  add_clang_tidy_to_target(LIB)
+endif()

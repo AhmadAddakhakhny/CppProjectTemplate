@@ -1,8 +1,9 @@
 compiler_options=.
 target=localhost
+lintOpt=
 
 all:
-	cd build/out/${target} && cmake $(compiler_options) ../../.. && cmake --build .
+	cd build/out/${target} && cmake $(compiler_options) ../../.. && cmake --build . $(lintOpt)
 	@echo "################## Application compiled successfully"
 
 run: all
@@ -23,9 +24,15 @@ docs: all
 	cd build/out/localhost && make docs
 
 test:
-	$(MAKE) all target=test compiler_options=-DTEST_ENABLED=ON
+	$(MAKE) all target=test compiler_options=-DTEST_ENABLED=ON 
 	@echo "################## Unit Test Running"
 	cd build/out/test/tests && ./test.exe
+
+lint:
+	$(MAKE) all compiler_options=-DCLANG-TIDY_ENABLED=ON  lintOpt="--target app.exe_clangtidy"
+	@echo "################## Application Running and Lintting enabled"
+	# cd build/out/localhost/app && ./app.exe
+
 clean:
 	rm -rf build/out
 	cd build && mkdir out

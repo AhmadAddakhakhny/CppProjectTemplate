@@ -9,3 +9,7 @@ target_compile_definitions(app.exe PRIVATE DEBUG_LOG=$<BOOL:${DEBUG_LOG}>)
 target_link_libraries(app.exe  PRIVATE nlohmann_json)
 target_set_warnings(app.exe ${WARNINGS_ENABLED} ${WARNINGS_ENABLED_AS_ERR})
 target_enable_lto(app.exe ${LTO_ENABLED})
+
+if(${CLANG-TIDY_ENABLED})
+  add_clang_tidy_to_target(app.exe)
+endif()

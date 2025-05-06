@@ -1,27 +1,29 @@
 cmake_minimum_required(VERSION 3.0.0)
 project(CppProjectTemplate VERSION 1.0.0 LANGUAGES C CXX)
 
-set(CMAKE_CXX_STANDARD          17)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_EXTENSIONS        OFF)
-set(CMAKE_CXX_FLAGS_RELEASE   "-O3")
-set(CMAKE_C_FLAGS_RELEASE     "-O3")
+set(CMAKE_CXX_STANDARD             17)
+set(CMAKE_CXX_STANDARD_REQUIRED    ON)
+set(CMAKE_CXX_EXTENSIONS          OFF)
+set(CMAKE_CXX_FLAGS_RELEASE     "-O3")
+set(CMAKE_C_FLAGS_RELEASE       "-O3")
+set(CMAKE_EXPORT_COMPILE_COMMANDS  ON)
 
 # Build config options
-option(DEBUG_LOG "Enable debug logging" OFF)
-option(CPM_ENABLED "Enable CPM to fetch GitHub Repos" OFF)
-option(WARNINGS_ENABLED "Enable compiler warning flags" ON)
-option(WARNINGS_ENABLED_AS_ERR "Enable compiler warnings as error" ON)
-option(SANITIZER_ENABLED "Enable Address Sanitizer" OFF)
-option(LTO_ENABLED "Enable Link Time Optimization" ON)
-option(TEST_ENABLED "Enable build for Unit test" OFF)
+option(DEBUG_LOG "Enable debug logging"                             OFF)
+option(CPM_ENABLED "Enable CPM to fetch GitHub Repos"               OFF)
+option(WARNINGS_ENABLED "Enable compiler warning flags"              ON)
+option(WARNINGS_ENABLED_AS_ERR "Enable compiler warnings as error"   ON)
+option(SANITIZER_ENABLED "Enable Address Sanitizer"                 OFF)
+option(LTO_ENABLED "Enable Link Time Optimization"                   ON)
+option(TEST_ENABLED "Enable build for Unit test"                    OFF)
+option(CLANG-TIDY_ENABLED "Enable Clang-tidy for project lintting"  OFF)
 
 # CMake Includes -----------------------------------------------------------------#
 set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake/")
 include(execBashCommand)
 include(CPM)    # Add third party CMake projects/submodules to the current prject
 include(docs)
-
+include(tools)
 if(WARNINGS_ENABLED)
   include(warnings)
 endif()

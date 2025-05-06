@@ -19,6 +19,6 @@ int main() {
   #endif
 
   printObject.printHelloWorld();
-  
+
   return 0;
 }
