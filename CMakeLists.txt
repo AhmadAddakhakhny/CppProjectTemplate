@@ -17,7 +17,8 @@ option(SANITIZER_ENABLED "Enable Address Sanitizer"                 OFF)
 option(LTO_ENABLED "Enable Link Time Optimization"                   ON)
 option(TEST_ENABLED "Enable build for Unit test"                    OFF)
 option(CLANG-TIDY_ENABLED "Enable Clang-tidy for project lintting"  OFF)
-
+option(ENABLE_CLANG_FORMAT"Enable clang-format to unify code style"  ON)
+option(ENABLE_CMAKE_FORMAT"Enable cmake-format to unify code style"  ON)
 # CMake Includes -----------------------------------------------------------------#
 set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake/")
 include(execBashCommand)
@@ -65,6 +66,9 @@ CPMAddPackage(
 )
 file(COPY ${googletest_SOURCE_DIR} DESTINATION ${CMAKE_SOURCE_DIR}/external/googletest)
 endif()
+
+# add_cmake_format_target()
+add_clang_format_target()
 
 if(NOT TEST_ENABLED)
 add_subdirectory(configured)
