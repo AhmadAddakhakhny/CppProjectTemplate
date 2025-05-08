@@ -20,7 +20,9 @@ function(target_enable_lto TARGET ENABLE)
         message(STATUS "IPO/LTO is supported!")
         # This tells CMake: Set the INTERPROCEDURAL_OPTIMIZATION property of the target ${TARGET} to TRUE.
         # set_property(): it's a built-in cmake command
-        set_property(TARGET ${TARGET} PROPERTY INTERPROCEDURAL_OPTIMIZATION TRUE) # g++ -flto main.c utils.c -o myapp
+        set_property(
+            TARGET ${TARGET} PROPERTY INTERPROCEDURAL_OPTIMIZATION TRUE
+        )# g++ -flto main.c utils.c -o myapp
     else()
         message(WARNING "IPO/LTO is not supported!")
     endif()
