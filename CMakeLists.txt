@@ -43,6 +43,8 @@ endif()
 
 if(TEST_ENABLED)
     include(gtest)
+    include(codeCoverage)
+    append_coverage_compiler_flags()
 endif()
 #---------------------------------------------------------------------------------#
 
