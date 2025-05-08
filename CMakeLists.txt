@@ -79,7 +79,8 @@ if(CPM_ENABLED)
 endif()
 
 add_cmake_format_target()
-add_clang_format_target()
+# add_clang_format_target() # format any source file in the project
+add_clang_format_diff_target() # format tracked files only both staged/unstaged
 
 if(NOT TEST_ENABLED)
     add_subdirectory(configured)
