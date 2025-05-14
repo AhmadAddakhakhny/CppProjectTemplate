@@ -3,8 +3,7 @@
 This is a template for modern C++ projects. What you get is:
 * Application, third party libraries and test code separated in distinct folders.
 * Use of modern CMake for building and compiling
-* External libraries installed and managed by
-  * CPM package manager
+* External libraries installed and managed by (CPM package manager)
 * Unit testing using gtest
 * General purpose libraries: JSON
 * Code documentation with Doxygen
@@ -43,28 +42,43 @@ project/
 * Code Coverage (only on GNU|Clang): gcovr
 * Makefile, Doxygen
 
-## Software Requirements
 ### Clone
-```
-# tbd
-```
-
-#### App Executable
-```
-# tbd
+```bash
+git clone https://github.com/AhmadAddakhakhny/CppProjectTemplate.git
+git clone git@github.com:AhmadAddakhakhny/CppProjectTemplate.git
 ```
 
-### Unit testing
-```
-# tbd
-```
-
-### Documentation
-```
-# tbd
+#### Generate and build for release
+```bash
+make r
 ```
 
-### Code Coverage (Unix only)
+### Generate and build for debug with debug logs
+```bash
+make d
 ```
-# tbd
+
+### Generate and build for unit test 
+```bash
+make test
+```
+
+### Generate and build for debug with sanitizer
+```bash
+make san
+```
+
+### Run clang-tidy for project linting
+```bash
+make lint
+```
+
+### Generate Doxygen documentation for the project
+```bash
+make doc
+```
+
+### Clean all build files, binaries and generated doxygen docs
+```bash
+make clean
 ```
