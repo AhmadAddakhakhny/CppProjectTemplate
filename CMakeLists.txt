@@ -7,8 +7,6 @@ project(
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
-set(CMAKE_CXX_FLAGS_RELEASE "-O3")
-set(CMAKE_C_FLAGS_RELEASE "-O3")
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 # Build config options
@@ -22,6 +20,7 @@ option(TEST_ENABLED "Enable build for Unit test" OFF)
 option(CLANG-TIDY_ENABLED "Enable Clang-tidy for project lintting" OFF)
 option(ENABLE_CLANG_FORMAT"Enable clang-format to unify code style" ON)
 option(ENABLE_CMAKE_FORMAT"Enable cmake-format to unify code style" ON)
+option(ENABLE_FORMAT_ONLY "Enable cmake-format to unify code style" OFF)
 # CMake Includes -----------------------------------------------------------------#
 set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake/")
 include(execBashCommand)
@@ -84,11 +83,13 @@ add_cmake_format_target()
 # add_clang_format_target() # format any source file in the project
 add_clang_format_diff_target() # format tracked files only both staged/unstaged
 
-if(NOT TEST_ENABLED)
-    add_subdirectory(configured)
-    add_subdirectory(external)
-    add_subdirectory(app)
-    add_subdirectory(lib)
-else()
-    add_subdirectory(tests)
+if(NOT ENABLE_FORMAT_ONLY)
+    if(NOT TEST_ENABLED)
+        add_subdirectory(configured)
+        add_subdirectory(external)
+        add_subdirectory(app)
+        add_subdirectory(lib)
+    else()
+        add_subdirectory(tests)
+    endif()
 endif()

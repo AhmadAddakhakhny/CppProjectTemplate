@@ -91,9 +91,7 @@ function(add_clang_format_diff_target)
         return()
     endif()
 
-    find_program(CLANGFORMAT clang-format-diff)
-
-    if(CLANGFORMAT)
+    if(EXISTS "${CMAKE_SOURCE_DIR}/tools/run-clang-format-diff.py")
         message(STATUS "Added Clang Format diff")
         set(DUMMY "")
         set(RUN_CMD
@@ -101,7 +99,7 @@ function(add_clang_format_diff_target)
         )
         execbashcommand(${RUN_CMD} DUMMY)
     else()
-        message(WARNING "CLANG FORMAT NOT FOUND")
+        message(WARNING "CLANG FORMAT python script NOT FOUND")
     endif()
 endfunction()
 
