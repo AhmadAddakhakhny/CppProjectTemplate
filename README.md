@@ -1,5 +1,8 @@
 # CppProjectTemplate
 
+
+![cppLogo](https://github.com/user-attachments/assets/f3b18d6b-58bb-40e0-b4de-1868ce5c8fa0)
+
 This is a template for modern C++ projects. What you get is:
 * Application, third party libraries and test code separated in distinct folders.
 * Use of modern CMake for building and compiling
