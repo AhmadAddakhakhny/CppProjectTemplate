@@ -72,6 +72,10 @@ cleanDoc:
 	cd docs && rm -rf html
 		@echo "################## Clean Project Docs Done"
 
+cleanFmt:
+	rm -rf build/out/fmt
+	@echo "################## Clean FMT Done"
+
 # Clean all build files, binaries and generated doxygen docs
-clean: cleanR cleanD cleanTst cleanDoc
+clean: cleanR cleanD cleanTst cleanDoc cleanFmt
 	@echo "################## Clean All Project Done"
