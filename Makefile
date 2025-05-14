@@ -26,7 +26,7 @@ d:
 
 # Generate and build for unit test 
 test:
-	$(MAKE) all project_type=test compiler_options= -DTEST_ENABLED=ON
+	$(MAKE) all project_type=test compiler_options=-DTEST_ENABLED=ON
 	cd build/out/test/tests && ./test.exe
 	@echo "################## Unit Test Done."
 
