@@ -51,6 +51,9 @@ git clone https://github.com/AhmadAddakhakhny/CppProjectTemplate.git
 git clone git@github.com:AhmadAddakhakhny/CppProjectTemplate.git
 ```
 
+## Bulid with different flavours
+> Navigate to the project's root directory and use the following make rules defined in the top-level Makefile to simplify interaction with CMake commands.
+
 #### Generate and build for release
 ```bash
 make r
