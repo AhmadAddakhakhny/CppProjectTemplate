@@ -43,7 +43,10 @@ project/
 * CPM
 * G++9 (or higher), Clang++9 (or higher)
 * Code Coverage (only on GNU|Clang): gcovr
-* Makefile, Doxygen
+* Doxygen
+* clang-tidy
+* clang-format
+* python3
 
 ### Clone
 ```bash
